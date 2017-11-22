@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/home/rikako/Documents/git_directories/starbax/devel -DCMAKE_INSTALL_PREFIX=/home/rikako/Documents/git_directories/starbax/install -G Unix Makefiles
