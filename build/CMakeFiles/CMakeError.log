@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_0a58b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0a58b.dir/build.make CMakeFiles/cmTC_0a58b.dir/build
+make[1]: Entering directory '/home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0a58b.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_0a58b.dir/CheckSymbolExists.c.o   -c /home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_0a58b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0a58b.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_0a58b.dir/CheckSymbolExists.c.o  -o cmTC_0a58b -rdynamic 
+CMakeFiles/cmTC_0a58b.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_0a58b.dir/build.make:97: recipe for target 'cmTC_0a58b' failed
+make[1]: *** [cmTC_0a58b] Error 1
+make[1]: Leaving directory '/home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_0a58b/fast' failed
+make: *** [cmTC_0a58b/fast] Error 2
+
+File /home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f459d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f459d.dir/build.make CMakeFiles/cmTC_f459d.dir/build
+make[1]: Entering directory '/home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f459d.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f459d.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f459d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f459d.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_f459d.dir/CheckFunctionExists.c.o  -o cmTC_f459d -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_f459d.dir/build.make:97: recipe for target 'cmTC_f459d' failed
+make[1]: *** [cmTC_f459d] Error 1
+make[1]: Leaving directory '/home/rikako/Documents/git_directories/starbax/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_f459d/fast' failed
+make: *** [cmTC_f459d/fast] Error 2
+
+
