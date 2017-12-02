@@ -12,7 +12,24 @@ find_package(catkin REQUIRED COMPONENTS
   message_runtime
   rospy
   std_msgs
+  geometry_msgs
 )
+
+
+add_message_files(
+  FILES
+#  AlvarMarkers.msg
+  ar_tag.msg
+  )
+
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  ar_track_alvar_msgs
+  
+)
+
+
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
