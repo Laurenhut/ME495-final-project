@@ -1,0 +1,13 @@
+angles['right_s0']=0.0
+angles['right_s1']=0.0
+angles['right_e0']=0.0
+angles['right_e1']=0.0
+angles['right_w0']=0.0
+angles['right_w1']=0.0
+angles['right_w2']=0.0
+
+raise_r = {'right_s0': -1.0, 'right_s1': -1.0, 'right_e0': 0.0, 'right_e1': 0.0, 'right_w0': -0.0, 'right_w1': -0.0, 'right_w2': -0.0}
+
+raise_l = {'left_s0': 1.0, 'left_s1': -1.0, 'left_e0': 0.0, 'left_e1': 0.0, 'left_w0': 0.0, 'left_w1': 0.0, 'left_w2': 0.0}
+
+baxter_interface.Limb('left').move_to_joint_positions(raise_r)

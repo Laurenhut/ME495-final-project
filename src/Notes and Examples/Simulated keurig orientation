@@ -1,0 +1,39 @@
+something like [[0,-1,0],[1,0,0],[0,0,1]]
+
+header: 
+  seq: 10615498
+  stamp: 
+    secs: 1512251771
+    nsecs: 996398928
+  frame_id: ''
+pose: 
+  position: 
+    x: 0.880342007836
+    y: -0.358822396457
+    z: 0.818463696589
+  orientation: 
+    x: 0.00745675019514
+    y: 0.00382121646583
+    z: 0.718088889751
+    w: 0.695900956744
+twist: 
+  linear: 
+    x: 0.0143943965
+    y: 0.023251081336
+    z: 0.00171352060463
+  angular: 
+    x: -0.0234067915128
+    y: 0.0330532039298
+    z: 0.00668688932123
+wrench: 
+  force: 
+    x: 0.188529759645
+    y: 0.328667610884
+    z: -3.28084301949
+  torque: 
+    x: 0.193941473961
+    y: -0.763350903988
+    z: 0.213583320379
+    
+    
+    Note that position data will not be consistent with a keurig. Had to elevate the arm a lot to put the gripper into a reasonable rotation assuming that z is oriented up.
