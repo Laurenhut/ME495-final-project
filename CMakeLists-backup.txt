@@ -14,7 +14,10 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   geometry_msgs
+<<<<<<< HEAD
   sensor_msgs
+=======
+>>>>>>> origin/master
 )
 
 
