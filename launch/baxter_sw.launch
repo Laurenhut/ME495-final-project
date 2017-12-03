@@ -8,6 +8,6 @@
 
   	<node name="starbax" pkg="starbax" type="starbax_sw.py">  </node> 
 
-    <node name="table_cam" pkg="starbax" type="table_cam_sw.py">  </node>
+    <node name="table_cam_sw" pkg="starbax" type="table_cam_sw.py">  </node>
 
 </launch>
