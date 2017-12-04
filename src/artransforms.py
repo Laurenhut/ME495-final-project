@@ -2,7 +2,7 @@
 import rospy
 from std_msgs.msg import String
 from ar_track_alvar_msgs.msg import AlvarMarkers,AlvarMarker
-from ar_tag_demo.msg import ar_tag
+from starbax.msg import ar_tag
 import rospy
 import sys
 import numpy as np
@@ -24,7 +24,7 @@ class ar_transform:
             ar=ar_tag()
             ar.id=data.markers[i].id
             ar.pose=data.markers[i].pose.pose
-            print ar
+            
  
             self.pub.publish(ar)
        

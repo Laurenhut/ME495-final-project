@@ -20,6 +20,7 @@ add_message_files(
   FILES
 #  AlvarMarkers.msg
   ar_tag.msg
+  ar_tagstr.msg
   )
 
 generate_messages(
