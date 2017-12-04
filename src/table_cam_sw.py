@@ -144,12 +144,12 @@ class starbaxHome:
 			self.pos_items.publish(' '.join(labels))
 
 
-		cv2.imshow('mask_k',cv2.flip(mask_k,1))
-		cv2.waitKey(1)
-		cv2.imshow('mask_t',cv2.flip(mask_t,1))
-		cv2.waitKey(1)
-		cv2.imshow('mask_c',cv2.flip(mask_c,1))
-		cv2.waitKey(1)
+		# cv2.imshow('mask_k',cv2.flip(mask_k,1))
+		# cv2.waitKey(1)
+		# cv2.imshow('mask_t',cv2.flip(mask_t,1))
+		# cv2.waitKey(1)
+		# cv2.imshow('mask_c',cv2.flip(mask_c,1))
+		# cv2.waitKey(1)
 		cv2.imshow('frame',cv2.flip(frame,1))
 		cv2.waitKey(1)
 
