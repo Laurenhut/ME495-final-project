@@ -34,7 +34,7 @@ generate_messages(
   std_msgs
   ar_track_alvar_msgs
  
-  # geometry_msgs
+   #geometry_msgs
    baxter_core_msgs
   
 )
