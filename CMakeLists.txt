@@ -20,15 +20,22 @@ find_package(catkin REQUIRED COMPONENTS
 
 add_message_files(
   FILES
-#  AlvarMarkers.msg
   ar_tag.msg
   ar_tagstr.msg
   )
-
+  
+ add_service_files(
+   FILES
+   Open.srv
+ )
+ 
 generate_messages(
   DEPENDENCIES
   std_msgs
   ar_track_alvar_msgs
+ 
+  # geometry_msgs
+   baxter_core_msgs
   
 )
 
@@ -75,10 +82,10 @@ generate_messages(
 # )
 
 # Generate services in the 'srv' folder
- add_service_files(
-   FILES
-   Open.srv
- )
+# add_service_files(
+ #  FILES
+  # Open.srv
+ #)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -87,13 +94,6 @@ generate_messages(
 #   Action2.action
 # )
 
-## Generate added messages and services with any dependencies listed here
- generate_messages(
-   DEPENDENCIES
-   std_msgs
-   #geometry_msgs
-   baxter_core_msgs
- )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##

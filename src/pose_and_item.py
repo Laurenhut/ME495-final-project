@@ -1,25 +1,35 @@
 #!/usr/bin/env python
 import rospy
-from starbax import ar_tagstr
-from starbax import ar_tag
+from starbax.msg import ar_tagstr
+from starbax.msg import ar_tag
 from std_msgs.msg import String
 import numpy as np
 
 class glue:
 
-	def _init_(self):
+	def __init__(self):
 
 		self.pose_items = rospy.Publisher("pose_and_item",ar_tagstr,queue_size = 10)
-	 	self.sbid = rospy.Subscriber("id_items",String,id_items)
-		self.ar = rospy.Subscriber("ar_pose_id",ar_tag,ar_info)
-		self.list_obj = []
-		self.id_list = []
-		self.pose_list = []
+	 	self.sbid = rospy.Subscriber("id_items",String,self.id_items)
+		self.ar = rospy.Subscriber("ar_pose_id",ar_tag,self.ar_info)
+		#self.list_obj = []
+		#self.id_list = []
+		#self.pose_list = []
+		
+	
 
 	def id_items(self,strid):
 		self.list_obj = strid.split()
+		print "th2"
 
-	def ar_info(self,ar_msg)
+	def ar_info(self,ar_msg):
+	    ar = ar_tagstr()
+	    ar.id="th"
+	    ar.pose=ar_msg.pose
+	    self.pose_items.publish(ar)
+	    print "th"
+	    
+	
 		if len(self.id_list) < 3:
 			self.id_list.append(ar_msg.id)
 			self.pose_list.append(ar_msg.pose)
@@ -41,9 +51,10 @@ class glue:
 			ar.pose[ind1] = self.pose_list[1]
 			ar.id[ind2] = self.id_list[2]
 			ar.pose[ind2] = self.pose_list[2]
-			self.pose_items.publish(ar)
+			#self.pose_items.publish(ar)
 			self.id_list = None
 			self.pose = None
+		# 	x=1
 
 def main():
 
