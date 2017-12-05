@@ -58,15 +58,6 @@ class glue:
 				print ar
 				self.id_list = []
 				self.pose_list =[]
-    	
-
-
-
-
-
-	    
-		
-		# 	x=1
 
 def main():
 

@@ -137,7 +137,7 @@ class starbaxHome:
 
 			labels = ['','','']
 			labels[indk] = 'kcup'
-			labels[indt] = 'table'
+			labels[indt] = 'cup'
 			labels[indc] = 'coffee'
 
 			print labels
