@@ -15,9 +15,9 @@ class starbaxHome:
 		self.bridge = CvBridge()
 		image_topic = "/cameras/left_hand_camera/image"
 		self.sb = rospy.Subscriber(image_topic, Image, self.image_callback)
-		self.lower_k,self.upper_k = self.bounds(cv2.imread('/home/rikako/ros_ws/src/ME495-final-project/media/kcup.png'))
-		self.lower_c,self.upper_c = self.bounds(cv2.imread('/home/rikako/ros_ws/src/ME495-final-project/media/coffee.png'))
-		self.lower_t,self.upper_t = self.bounds(cv2.imread('/home/rikako/ros_ws/src/ME495-final-project/media/table.png'))
+		self.lower_k,self.upper_k = self.bounds(cv2.imread('/home/solomon/catkin_ws/src/starbax/media/kcup.png'))
+		self.lower_c,self.upper_c = self.bounds(cv2.imread('/home/solomon/catkin_ws/src/starbax/media/coffee.png'))
+		self.lower_t,self.upper_t = self.bounds(cv2.imread('/home/solomon/catkin_ws/src/starbax/media/table.png'))
 		self.kernel = np.ones((5,5),np.uint8)
 	def bounds(self,masked_img):
 
@@ -129,7 +129,7 @@ class starbaxHome:
 
 		if k_candidate == True and t_candidate == True and c_candidate == True:
 
-			pos = np.argsort([cyk,cyt,cyc])
+			pos = np.argsort([cxk,cxt,cxc])
 			pos = list(pos)
 			indk = pos.index(0)
 			indt = pos.index(1)
@@ -150,7 +150,7 @@ class starbaxHome:
 		# cv2.waitKey(1)
 		# cv2.imshow('mask_c',cv2.flip(mask_c,1))
 		# cv2.waitKey(1)
-		cv2.imshow('frame',cv2.flip(frame,1))
+		cv2.imshow('frame',frame)
 		cv2.waitKey(1)
 
 def main():
