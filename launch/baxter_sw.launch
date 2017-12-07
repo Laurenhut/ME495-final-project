@@ -9,5 +9,11 @@
   	<node name="starbax" pkg="starbax" type="starbax_sw.py">  </node> 
 
     <node name="table_cam_sw" pkg="starbax" type="table_cam_sw.py">  </node>
+    
+    <node name="presser_node" pkg="starbax" type="press_service.py"> </node>
+    
+    <node name="closer_node" pkg="starbax" type="close_service.py"> </node>
+    
+    <node name="opener_node" pdg="starbax" type="close_service.py"> </node>
 
 </launch>

@@ -184,7 +184,7 @@ def posetonp(msg):
 
 
 
-#Changeme node name is a placeholder
+
 def open_server():
     rospy.init_node('presser_node')
     svc = rospy.Service('presser', Open2, request_handler)
