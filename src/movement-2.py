@@ -289,7 +289,7 @@ class movement:
 		self.yrk=0
 		self.yrc=0
 		self.yrcm=0
-        self.keurig_pose = []
+        self.keurig_pose = Pose()
 
 
 	def callback(self,data):
@@ -373,13 +373,15 @@ class movement:
 				pnp.move_to_start(starting_joint_angles)
 
 
-	        	# # call to Ian's service - open the lid
-          #       rospy.wait_for_service('opener')
-          #       try:
-          #           opener = rospy.ServiceProxy('opener',Open2)
-          #           resp1 = opener(self.keurig.pose) #resp1 is a bool indicating success
-          #       except rospy.ServiceException, e:
-          #           print "Open call failed: %s"%e
+
+
+	        	# call to Ian's service - open the lid
+                rospy.wait_for_service('opener')
+                try:
+                    opener = rospy.ServiceProxy('opener',Open2)
+                    resp1 = opener(self.keurig_pose) #resp1 is a bool indicating success
+                except rospy.ServiceException, e:
+                    print "Open call failed: %s"%e
 
 	        	#move to start
 				pnp.move_to_start(starting_joint_angles)
@@ -388,18 +390,18 @@ class movement:
 				print("\nPlacing the k_cup...")
 				pnp.place(block_poses[3])
 
-	        	# # call to Ian's service - close the lid
-          #       rospy.wait_for_service('closer')
-          #       try:
-          #           closer = rospy.ServiceProxy('closer',Open2)
-          #           resp2 = closer(self.keurig.pose)
-          #       except rospy.ServiceException, e:
-          #           print "Close call failed: %s"%e
+	        	# call to Ian's service - close the lid
+                rospy.wait_for_service('closer')
+                try:
+                    closer = rospy.ServiceProxy('closer',Open2)
+                    resp2 = closer(self.keurig_pose)
+                except rospy.ServiceException, e:
+                    print "Close call failed: %s"%e
 
                 # ropsy.wait_for_service('presser')   #This service call will have Baxter press the coffee button.
                 # try:
                 #     press = rospy.ServiceProxy('presser',Open2)
-                #     resp3 = press(self.keurig.pose)
+                #     resp3 = press(self.keurig_pose)
                 # except rospy.ServiceException, e:
                 #     print "Press call failed: %s"%e
 
