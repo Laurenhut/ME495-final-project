@@ -34,8 +34,10 @@ class starbaxHome:
 		else:
 			end = 80
 		l_h = np.argmax(hist_maskH[start:]>max(hist_maskH)*.02) + start
+		if l_h > 5:
+			l_h = l_h-5
 		l_s = -10+np.argmax(hist_maskS>max(hist_maskS)*.02)
-		u_h = 180 - (np.argmax(flipH[end:]>max(flipH)*.02)+end)
+		u_h = 180 - (np.argmax(flipH[end:]>max(flipH)*.02)+end)+5
 		u_s = 10+255 - np.argmax(flipS>max(flipS)*.02)
 		print l_h,l_s,u_h,u_s
 		# plt.figure('histogram')
