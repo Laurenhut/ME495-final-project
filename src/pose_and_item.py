@@ -44,15 +44,15 @@ class glue:
 				ind2 = pos.index(2)
 
 				 
-				ar.id=self.list_obj[0]
+				ar.id=self.list_obj[ind0]
 				ar.pose=self.pose_list[ind0]
 				self.pose_items.publish(ar)
 				print ar
-				ar.id = self.list_obj[1]
+				ar.id = self.list_obj[ind2]
 				ar.pose = self.pose_list[ind1]
 				self.pose_items.publish(ar)
 				print ar
-				ar.id = self.list_obj[2]
+				ar.id = self.list_obj[ind1]
 				ar.pose = self.pose_list[ind2]
 				self.pose_items.publish(ar)
 				print ar
