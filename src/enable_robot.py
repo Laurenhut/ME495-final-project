@@ -74,16 +74,38 @@ def main():
                 print rs.state()
             elif act == 'enable':
                 rs.enable()
-                #declare dictionaries
-                img = cv2.imread(path)
-                msg = cv_bridge.CvBridge().cv2_to_imgmsg(img, encoding="bgr8")
-                pub = rospy.Publisher('/robot/xdisplay', Image, latch=True, queue_size=1)
-                pub.publish(msg)
-                rospy.sleep(1)
-                #command joints
-                #rospy.wait(5)
-                #set picture
-                #command joints
+
+                #declare joint dictionaries
+                raise_r = {'right_s0': -1.0, 'right_s1': -1.0, 'right_e0': 0.0, 'right_e1': 0.0, 'right_w0': -0.0, 'right_w1': -0.0, 'right_w2': -0.0}
+                raise_l = {'left_s0': 1.0, 'left_s1': -1.0, 'left_e0': 0.0, 'left_e1': 0.0, 'left_w0': 0.0, 'left_w1': 0.0, 'left_w2': 0.0}
+                rest_r = {'right_s0': 0.0, 'right_s1': 0.5, 'right_e0': 0.0, 'right_e1': 0.0, 'right_w0': -0.0, 'right_w1': -0.0, 'right_w2': -0.0}
+                rest_l = {'left_s0': 0.0, 'left_s1': 0.5, 'left_e0': 0.0, 'left_e1': 0.0, 'left_w0': 0.0, 'left_w1': 0.0, 'left_w2': 0.0}
+
+
+                #Command Joints
+                baxter_interface.Limb('left').move_to_joint_positions(rest_l)
+                baxter_interface.Limb('right').move_to_joint_positions(rest_r)
+                rospy.sleep(3)
+
+                #Command joints
+                # baxter_interface.Limb('left').move_to_joint_positions(raise_l)
+                # baxter_interface.Limb('right').move_to_joint_positions(raise_r)
+                #Set Image
+                # img = cv2.imread('media/TheSun2.png')
+                # msg = cv_bridge.CvBridge().cv2_to_imgmsg(img, encoding="bgr8")
+                # pub = rospy.Publisher('/robot/xdisplay', Image, latch=True, queue_size=1)
+                # # pub.publish(msg)
+                # rospy.sleep(3)
+
+                #Command joints
+                # baxter_interface.Limb('left').move_to_joint_positions(rest_l)
+                # baxter_interface.Limb('right').move_to_joint_positions(rest_r)
+                # Set Image
+                # img = cv2.imread('media/researchsdk.png')
+                # msg = cv_bridge.CvBridge().cv2_to_imgmsg(img, encoding="bgr8")
+                # pub = rospy.Publisher('/robot/xdisplay', Image, latch=True, queue_size=1)
+                # pub.publish(msg)
+
             elif act == 'disable':
                 rs.disable()
             elif act == 'reset':
