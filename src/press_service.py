@@ -31,11 +31,11 @@ def request_handler(req):
 
 
     #Set variables
-    x1 = -.25
+    x1 = -.15
     x2 = -.05
-    x3 = -.01
-    x4 = -.25
-    y1 = -.1
+    x3 = -.015
+    x4 = -.15
+    y1 = -.08
     y2 = y1
     y3 = y2
     y4 = y3
@@ -154,7 +154,7 @@ def poser(Qk,pk,dQke,dTke):
     #To start, I will just collect dQe from data.
     #later, Qwk*Qke=Qwe
     #Once I have any desired end effector orientation, I can rotate that about world z to get the one I want for a keurig rotation
-    dQe = np.array([[0.29591,-0.59850,0.65811,-0.34801]]) #w, x, y, z
+    dQe = np.array([[0.29591,0.59850,0.65811,0.34801]]) #w, x, y, z
 
     hdr = Header(stamp=rospy.Time.now(), frame_id='base')
     dpose = PoseStamped(

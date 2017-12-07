@@ -155,7 +155,7 @@ def poser(Qk,pk,dQke,dTke):
     #To start, I will just collect dQe from data.
     #later, Qwk*Qke=Qwe
     #Once I have any desired end effector orientation, I can rotate that about world z to get the one I want for a keurig rotation
-    dQe = np.array([[0.50833,-0.48533,0.49162,-0.51417]]) #w, x, y, z
+    dQe = np.array([[0.50833,0.48533,0.49162,0.51417]]) #w, x, y, z
 
     hdr = Header(stamp=rospy.Time.now(), frame_id='base')
     dpose = PoseStamped(
