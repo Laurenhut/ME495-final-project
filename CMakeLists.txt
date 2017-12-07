@@ -27,15 +27,15 @@ add_message_files(
  add_service_files(
    FILES
    Open.srv
+   Open2.srv
  )
  
 generate_messages(
   DEPENDENCIES
   std_msgs
   ar_track_alvar_msgs
- 
-   #geometry_msgs
-   baxter_core_msgs
+  geometry_msgs
+  baxter_core_msgs
   
 )
 
