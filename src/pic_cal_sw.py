@@ -23,15 +23,15 @@ class starbaxHome:
 		row,col,_ = frame.shape
 		hsv_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 		k = cv2.waitKey(10)
+		bsize = 25
 		if k == ord('b'):
-
 			mask = np.zeros((row,col), np.uint8)
-			mask[int(row/2.-50):int(row/2.+50),int(col/2.-50):int(col/2.+50)] = 255
+			mask[int(row/2.-bsize):int(row/2.+bsize),int(col/2.-bsize):int(col/2.+bsize)] = 255
 			masked_img = cv2.bitwise_and(frame,frame,mask = mask)
-			masked_img = masked_img[int(row/2.-50):int(row/2.+50),int(col/2.-50):int(col/2.+50)]
+			masked_img = masked_img[int(row/2.-bsize):int(row/2.+bsize),int(col/2.-bsize):int(col/2.+bsize)]
 			cv2.imshow('masked_img',masked_img)
 			cv2.waitKey(30)
-			cv2.imwrite('kcup.png',masked_img)
+			cv2.imwrite('coffee.png',masked_img)
 			self.gotMask = True
 			mask_hsv = cv2.cvtColor(masked_img, cv2.COLOR_BGR2HSV)
 			hist_maskH = cv2.calcHist([mask_hsv],[0],None,[180],[0,180])
@@ -60,7 +60,7 @@ class starbaxHome:
 			self.lower = np.array([l_h,l_s,0],np.uint8)
 			self.upper = np.array([u_h,u_s,255],np.uint8)
 		if self.gotMask == False:
-			cv2.rectangle(frame,(int(col/2.-50),int(row/2.-50)),(int(col/2.+50),int(row/2.+50)),(0,255,0),3)
+			cv2.rectangle(frame,(int(col/2.-bsize),int(row/2.-bsize)),(int(col/2.+bsize),int(row/2.+bsize)),(0,255,0),3)
 		else:
 			frame = cv2.inRange(hsv_frame,self.lower,self.upper)
 		

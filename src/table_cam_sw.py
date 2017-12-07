@@ -17,7 +17,7 @@ class starbaxHome:
 		self.sb = rospy.Subscriber(image_topic, Image, self.image_callback)
 		self.lower_k,self.upper_k = self.bounds(cv2.imread('/home/solomon/catkin_ws/src/starbax/media/kcup.png'))
 		self.lower_c,self.upper_c = self.bounds(cv2.imread('/home/solomon/catkin_ws/src/starbax/media/coffee.png'))
-		self.lower_t,self.upper_t = self.bounds(cv2.imread('/home/solomon/catkin_ws/src/starbax/media/table.png'))
+		self.lower_t,self.upper_t = self.bounds(cv2.imread('/home/solomon/catkin_ws/src/starbax/media/cup.png'))
 		self.kernel = np.ones((5,5),np.uint8)
 	def bounds(self,masked_img):
 
