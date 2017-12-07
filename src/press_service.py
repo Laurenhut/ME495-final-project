@@ -32,17 +32,17 @@ def request_handler(req):
 
     #Set variables
     x1 = -.15
-    x2 = -.05
-    x3 = -.015
+    x2 = -.03
+    x3 = .0
     x4 = -.15
-    y1 = -.08
+    y1 = -.06
     y2 = y1
     y3 = y2
     y4 = y3
-    z1 = -.01
-    z2 = -.01
-    z3 = -.03
-    z4 = -.01
+    z1 = .0
+    z2 = .0
+    z3 = -.015
+    z4 = .05
     ikreq = SolvePositionIKRequest()
     lefthand = baxter_interface.Gripper('left')
     left = baxter_interface.Limb('left')
@@ -99,19 +99,17 @@ def request_handler(req):
 
 
     #Will need to index sol_list. It's a list of dictionaries
+    #Open the gripper
+    lefthand.open()
+    rospy.sleep(1)
     left.move_to_joint_positions(sol_list[0])
     rospy.sleep(5)
-    #Close the gripper
-    lefthand.close()
-    rospy.sleep(1)
     left.move_to_joint_positions(sol_list[1])
     rospy.sleep(1)
     left.move_to_joint_positions(sol_list[2])
     rospy.sleep(1)
     left.move_to_joint_positions(sol_list[3])
     rospy.sleep(1)
-    #Open the gripper
-    lefthand.open()
 
     return Open2Response(True)
 
