@@ -288,6 +288,8 @@ class movement:
 		self.yrk=0
 		self.yrc=0
 		self.yrcm=0
+     
+
 
 	def callback(self,data):
 		# Wait for the All Clear from emulator startup
@@ -296,7 +298,7 @@ class movement:
 	  
 	    print data
 	    
-	    '''
+	    
 	    if data.id== "coffee":
 	    	self.xrcm=data.pose.position.x
 	    	self.yrcm=data.pose.position.y
@@ -321,14 +323,16 @@ class movement:
 	    	print self.xrk
 	    	print self.yrk
 	    	
-	    	print "kcup"'''
+	    	print "kcup"
 	    	
 	    
 	    
-	    if  self.xrc !=0 and self.xrcm !=0 and self.xrk !=0  :
+	    if  self.xrc !=0 and self.xrcm !=0 and self.xrk !=0 :
+        
 	    
 			
 			limb = 'left'
+
 			hover_distance = 0.15 # meters
 			# Starting Joint angles for left arm
 			starting_joint_angles = {'left_w0': 0,'left_w1': -0.7854,'left_w2': 0,'left_e0': 0,'left_e1': 2.356,'left_s0': -0.7854,'left_s1': -0.7854}
@@ -341,17 +345,17 @@ class movement:
 	    	
 	    	# from a perception node.
 	    	# cup pick up pose (correct)
-			block_poses.append(Pose(position=Point(x=self.xrc, y=self.yrc, z=-0.1),orientation=overhead_orientation))
+			block_poses.append(Pose(position=Point(x=self.xrc, y=self.yrc, z=-0.1+.1),orientation=overhead_orientation))
 	    	#cup place pose
-			block_poses.append(Pose(position=Point(x=self.xrcm, y=self.yrcm, z=-0.08),orientation=overhead_orientation))
+			block_poses.append(Pose(position=Point(x=self.xrcm, y=self.yrcm, z=-0.08+.1),orientation=overhead_orientation))
 	    	
 	    	#k-cup pick up pose
 			block_poses.append(Pose(
-	    	    position=Point(x=self.xrk, y=self.yrk, z=-0.1),
+	    	    position=Point(x=self.xrk, y=self.yrk, z=-0.1+.1),
 	    	    orientation=overhead_orientation))
 	    	#k_cup place pose
 			block_poses.append(Pose(
-	    	    position=Point(x=self.xrcm, y=self.yrcm, z=0.07),
+	    	    position=Point(x=self.xrcm, y=self.yrcm, z=0.07+.1),
 	    	    orientation=overhead_orientation))
 	    	# Move to the desired starting angles
 			pnp.move_to_start(starting_joint_angles)
