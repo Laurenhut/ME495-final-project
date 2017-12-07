@@ -289,7 +289,7 @@ class movement:
 		self.yrk=0
 		self.yrc=0
 		self.yrcm=0
-
+        self.keurig_pose = []
 
 
 	def callback(self,data):
@@ -303,6 +303,7 @@ class movement:
 	    if data.id== "coffee":
 	    	self.xrcm=data.pose.position.x
 	    	self.yrcm=data.pose.position.y
+            self.keurig_pose = data.pose
 	    	print self.xrcm
 	    	print self.yrcm
 
@@ -376,7 +377,7 @@ class movement:
                 rospy.wait_for_service('opener')
                 try:
                     opener = rospy.ServiceProxy('opener',Open2)
-                    resp1 = opener('''pose of keurig''') #resp1 is a bool indicating success
+                    resp1 = opener(self.keurig.pose) #resp1 is a bool indicating success
                 except rospy.ServiceException, e:
                     print "Open call failed: %s"%e
 
@@ -391,14 +392,14 @@ class movement:
                 rospy.wait_for_service('closer')
                 try:
                     closer = rospy.ServiceProxy('closer',Open2)
-                    resp2 = closer('''pose of keurig''')
+                    resp2 = closer(self.keurig.pose)
                 except rospy.ServiceException, e:
                     print "Close call failed: %s"%e
 
                 # ropsy.wait_for_service('presser')   #This service call will have Baxter press the coffee button.
                 # try:
                 #     press = rospy.ServiceProxy('presser',Open2)
-                #     resp3 = press('''pose of keurig''')
+                #     resp3 = press(self.keurig.pose)
                 # except rospy.ServiceException, e:
                 #     print "Press call failed: %s"%e
 
