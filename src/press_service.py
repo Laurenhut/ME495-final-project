@@ -18,7 +18,7 @@ from baxter_core_msgs.srv import (
     SolvePositionIK,
     SolvePositionIKRequest,
 )
-from me495finaltest.srv import *
+from starbax.srv import *
 
 
 #To Do:
