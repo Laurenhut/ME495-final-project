@@ -7,6 +7,7 @@ import copy
 import rospy
 import rospkg
 from starbax.msg import ar_tagstr
+from starbax.srv import *
 
 from geometry_msgs.msg import (
     PoseStamped,
@@ -112,7 +113,7 @@ class PickAndPlace(object):
         current_pose = self._limb.endpoint_pose()
         ik_pose = Pose()
         ik_pose.position.z = current_pose['position'].z + 0.08
-        ik_pose.position.y = current_pose['position'].y 
+        ik_pose.position.y = current_pose['position'].y
         ik_pose.position.x = current_pose['position'].x - self._hover_distance
         ik_pose.orientation.x = current_pose['orientation'].x
         ik_pose.orientation.y = current_pose['orientation'].y
@@ -127,7 +128,7 @@ class PickAndPlace(object):
         current_pose = self._limb.endpoint_pose()
         ik_pose = Pose()
         ik_pose.position.z = current_pose['position'].z
-        ik_pose.position.y = current_pose['position'].y 
+        ik_pose.position.y = current_pose['position'].y
         ik_pose.position.x = current_pose['position'].x - self._hover_distance
         ik_pose.orientation.x = current_pose['orientation'].x
         ik_pose.orientation.y = current_pose['orientation'].y
@@ -175,7 +176,7 @@ yrcm=0
 def callback(data):
 	# Wait for the All Clear from emulator startup
     #rospy.wait_for_message("/robot/sim/started", Empty)
-    
+
     print data.id
     print data.pose.position
     print "space"
@@ -184,11 +185,11 @@ def callback(data):
     	yrcm=data.pose.position.y
     	print xrcm
     	print yrcm
-    	
+
     	ida[1]="coffee"
     	print "coffee"
-    
-    	
+
+
     elif data.id== "cup"  :
     	xrc=data.pose.position.x
     	yrc=data.pose.position.y
@@ -196,7 +197,7 @@ def callback(data):
     	print yrc
     	ida[0]="cup"
     	print "cup"
-    	
+
     elif data.id== "kcup":
     	xrk=data.pose.position.x
     	yrk=data.pose.position.y
@@ -204,12 +205,12 @@ def callback(data):
     	print yrk
     	ida[2]="kcup"
     	print "kcup"
-    	
-    
-    
+
+
+
     if  xrc !=0 and xrcm !=0 and xrk !=0  :
-    
-		
+
+
 		limb = 'left'
 		hover_distance = 0.15 # meters
 		# Starting Joint angles for left arm
@@ -220,13 +221,13 @@ def callback(data):
 		block_poses = list()
     	# The Pose of the block in its initial location.
     	# You may wish to replace these poses with estimates
-    	
+
     	# from a perception node.
     	# cup pick up pose (correct)
 		block_poses.append(Pose(position=Point(x=xrc, y=yrc, z=-0.1),orientation=overhead_orientation))
     	#cup place pose
 		block_poses.append(Pose(position=Point(x=xrcm, y=yrcm, z=-0.08),orientation=overhead_orientation))
-    	
+
     	#k-cup pick up pose
 		block_poses.append(Pose(
     	    position=Point(x=xrk, y=yrk, z=-0.1),
@@ -246,10 +247,10 @@ def callback(data):
 			pnp.place(block_poses[1])
         	#move to start
 			pnp.move_to_start(starting_joint_angles)
-        
+
 
         	# call to Ian's service - open the lid
-        
+
         	#move to start
 			pnp.move_to_start(starting_joint_angles)
 			print("\nPicking the k_cup...")
@@ -269,8 +270,8 @@ def callback(data):
         	#move to start
 			pnp.move_to_start(starting_joint_angles)
 			print("\nAll set, Enjoy your coffee...")
-			
-			
+
+
 
 			break
 
@@ -280,7 +281,7 @@ class movement:
 
 	def __init__(self):
 		self.sub=rospy.Subscriber("pose_and_item", ar_tagstr,self.callback)
-		
+
 		self.xrcm=0
 		self.xrk=0
 		self.xrc=0
@@ -288,49 +289,50 @@ class movement:
 		self.yrk=0
 		self.yrc=0
 		self.yrcm=0
-     
+
 
 
 	def callback(self,data):
 		# Wait for the All Clear from emulator startup
 	    #rospy.wait_for_message("/robot/sim/started", Empty)
-	    
-	  
+
+
 	    print data
-	    
-	    
+
+
 	    if data.id== "coffee":
 	    	self.xrcm=data.pose.position.x
 	    	self.yrcm=data.pose.position.y
 	    	print self.xrcm
 	    	print self.yrcm
-	    	
-	    	
+
+
 	    	print "coffee"
-	    
-	    	
+
+
 	    elif data.id== "cup"  :
 	    	self.xrc=data.pose.position.x
 	    	self.yrc=data.pose.position.y
 	    	print self.xrc
 	    	print self.yrc
-	    	
+
 	    	print "cup"
-	    	
+
 	    elif data.id== "kcup":
 	    	self.xrk=data.pose.position.x
 	    	self.yrk=data.pose.position.y
 	    	print self.xrk
 	    	print self.yrk
-	    	
+
 	    	print "kcup"
-	    	
-	    
-	    
+
+
+
 	    if  self.xrc !=0 and self.xrcm !=0 and self.xrk !=0 :
-        
-	    
-			
+
+
+
+
 			limb = 'left'
 
 			hover_distance = 0.15 # meters
@@ -342,13 +344,13 @@ class movement:
 			block_poses = list()
 	    	# The Pose of the block in its initial location.
 	    	# You may wish to replace these poses with estimates
-	    	
+
 	    	# from a perception node.
 	    	# cup pick up pose (correct)
 			block_poses.append(Pose(position=Point(x=self.xrc, y=self.yrc, z=-0.1+.1),orientation=overhead_orientation))
 	    	#cup place pose
 			block_poses.append(Pose(position=Point(x=self.xrcm, y=self.yrcm, z=-0.08+.1),orientation=overhead_orientation))
-	    	
+
 	    	#k-cup pick up pose
 			block_poses.append(Pose(
 	    	    position=Point(x=self.xrk, y=self.yrk, z=-0.1+.1),
@@ -368,10 +370,16 @@ class movement:
 				pnp.place(block_poses[1])
 	        	#move to start
 				pnp.move_to_start(starting_joint_angles)
-	        
+
 
 	        	# call to Ian's service - open the lid
-	        
+                rospy.wait_for_service('opener')
+                try:
+                    opener = rospy.ServiceProxy('opener',Open2)
+                    resp1 = opener('''pose of keurig''') #resp1 is a bool indicating success
+                except rospy.ServiceException, e:
+                    print "Open call failed: %s"%e
+
 	        	#move to start
 				pnp.move_to_start(starting_joint_angles)
 				print("\nPicking the k_cup...")
@@ -380,6 +388,19 @@ class movement:
 				pnp.place(block_poses[3])
 
 	        	# call to Ian's service - close the lid
+                rospy.wait_for_service('closer')
+                try:
+                    closer = rospy.ServiceProxy('closer',Open2)
+                    resp2 = closer('''pose of keurig''')
+                except rospy.ServiceException, e:
+                    print "Close call failed: %s"%e
+
+                # ropsy.wait_for_service('presser')   #This service call will have Baxter press the coffee button.
+                # try:
+                #     press = rospy.ServiceProxy('presser',Open2)
+                #     resp3 = press('''pose of keurig''')
+                # except rospy.ServiceException, e:
+                #     print "Press call failed: %s"%e
 
 
 				pnp.move_to_start(starting_joint_angles)
@@ -391,8 +412,8 @@ class movement:
 	        	#move to start
 				pnp.move_to_start(starting_joint_angles)
 				print("\nAll set, Enjoy your coffee...")
-				
-				
+
+
 
 				break
 
@@ -401,17 +422,17 @@ class movement:
 
 def main():
     rospy.init_node("pick_and_place")
-    
+
     ic= movement()
 
     try:
     	rospy.spin()
     except KeyboardInterrupt:
     	print("Shutting down")
-	
+
     # Wait for the All Clear from emulator startup
     #rospy.wait_for_message("/robot/sim/started", Empty)
-  
+
     '''
     limb = 'left'
     hover_distance = 0.15 # meters
@@ -461,10 +482,10 @@ def main():
         pnp.place(block_poses[1])
         #move to start
         pnp.move_to_start(starting_joint_angles)
-        
+
 
         # call to Ian's service - open the lid
-        
+
         #move to start
         pnp.move_to_start(starting_joint_angles)
         print("\nPicking the k_cup...")
