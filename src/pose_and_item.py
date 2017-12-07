@@ -39,9 +39,9 @@ class glue:
 				pos = np.argsort([y0,y1,y2])
 				pos = list(pos)
 
-				ind0 = pos.index(0)
-				ind1 = pos.index(1)
-				ind2 = pos.index(2)
+				ind0 = pos[0]
+				ind1 = pos[1]
+				ind2 = pos[2]
 
 				 
 				ar.id=self.list_obj[0]

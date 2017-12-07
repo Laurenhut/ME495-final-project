@@ -37,7 +37,7 @@ def main(args):
 		rospy.spin()
 	except KeyboardInterrupt:
 		print("Shutting down")
-	cv2.destroyAllWindows()
+	
 
 
 if __name__ == '__main__':
