@@ -2,7 +2,7 @@
 	
     <!-- Open baxter's right hand camera and set the required resolution -->
 
-    <node pkg="baxter_tools" type="enable_robot.py" name="enable_robot" args="-e" />
+    <node pkg="starbax" type="enable_robot.py" name="enable_robot" args="-e" />
 
     <node pkg="baxter_tools" type="camera_control.py" name="open_left_camera" output="screen"  args="-o left_hand_camera -r 1280x800" />
 
