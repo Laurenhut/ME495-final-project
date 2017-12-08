@@ -145,7 +145,7 @@ def ikcaller(poselist):
 
 def poser(Qk,pk,dQke,dTke):
     #Translate pk to dpw
-    Twk = np.array([[1,0,0,pk[0,0]],[0,1,0,pk[1,0]],[0,0,1,pk[2,0]],[0,0,0,1]])
+    Twk = np.array([[1,0,0,pk[0,0]],[0,1,0,pk[1,0]],[0,0,1,0.07+.15],[0,0,0,1]])
     dpw = Twk.dot(dTke.dot(np.array([[0],[0],[0],[1]])))
 
 

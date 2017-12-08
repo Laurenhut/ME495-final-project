@@ -32,13 +32,13 @@ def request_handler(req):
 
     #Set variables
     x1 = -.25
-    x2 = -.09
-    x3 = -.105
+    x2 = -.11
+    x3 = -.155
     x4 = -.25
-    y1 = 0
-    y2 = 0
-    y3 = 0
-    y4 = 0
+    y1 = -.03
+    y2 = y1
+    y3 = y2
+    y4 = y3
     z1 = .0516
     z2 = .0516
     z3 = -.0573
@@ -100,7 +100,7 @@ def request_handler(req):
 
     #Will need to index sol_list. It's a list of dictionaries
     left.move_to_joint_positions(sol_list[0])
-    rospy.sleep(5)
+    rospy.sleep(2)
     #Open the gripper
     lefthand.open()
     left.move_to_joint_positions(sol_list[1])
@@ -148,7 +148,7 @@ def ikcaller(poselist):
 
 def poser(Qk,pk,dQke,dTke):
     #Translate pk to dpw
-    Twk = np.array([[1,0,0,pk[0,0]],[0,1,0,pk[1,0]],[0,0,1,pk[2,0]],[0,0,0,1]])
+    Twk = np.array([[1,0,0,pk[0,0]],[0,1,0,pk[1,0]],[0,0,1,0.07+.15],[0,0,0,1]])
     dpw = Twk.dot(dTke.dot(np.array([[0],[0],[0],[1]])))
 
 

@@ -348,9 +348,9 @@ class movement:
 
 			# from a perception node.
 			# cup pick up pose (correct)
-			block_poses.append(Pose(position=Point(x=self.xrc, y=self.yrc, z=-0.1+.1),orientation=overhead_orientation))
+			block_poses.append(Pose(position=Point(x=self.xrc, y=self.yrc-.15, z=-0.1+.1),orientation=overhead_orientation))
 			#cup place pose
-			block_poses.append(Pose(position=Point(x=self.xrcm, y=self.yrcm, z=-0.08+.1),orientation=overhead_orientation))
+			block_poses.append(Pose(position=Point(x=self.xrcm-.07, y=self.yrcm-.07, z=-0.05+.1),orientation=overhead_orientation))
 
 			#k-cup pick up pose
 			block_poses.append(Pose(
@@ -358,7 +358,7 @@ class movement:
 				orientation=overhead_orientation))
 			#k_cup place pose
 			block_poses.append(Pose(
-				position=Point(x=self.xrcm, y=self.yrcm, z=0.07+.1),
+				position=Point(x=self.xrcm-.10, y=self.yrcm-.04, z=0.03+.15),
 				orientation=overhead_orientation))
 			# Move to the desired starting angles
 			pnp.move_to_start(starting_joint_angles)
@@ -379,7 +379,7 @@ class movement:
 					opener = rospy.ServiceProxy('opener',Open2)
 					resp1 = opener(self.keurig_pose) #resp1 is a bool indicating success
 				except rospy.ServiceException, e:
-					print "Open call failed: %s"%e
+					print "Open call failed: %s"%e 
 
 				#move to start
 				pnp.move_to_start(starting_joint_angles)
@@ -395,13 +395,6 @@ class movement:
 					resp2 = closer(self.keurig_pose)
 				except rospy.ServiceException, e:
 					print "Close call failed: %s"%e
-
-				ropsy.wait_for_service('presser')   #This service call will have Baxter press the coffee button.
-				try:
-					press = rospy.ServiceProxy('presser',Open2)
-					resp3 = press(self.keurig_pose)
-				except rospy.ServiceException, e:
-					print "Press call failed: %s"%e
 
 
 				pnp.move_to_start(starting_joint_angles)
