@@ -4,6 +4,8 @@
 ##### Functionality of package
 This package is a collection of scripts and message definitions created to have a Baxter robot prepare a cup of coffee using a single serve coffee maker, one cup, and one single serve packet of coffee. The objects must be set at a specific height and the coffee maker must face Baxter, but objects can otherwise be placed arbitrarily so long as Baxter can easily reach them.
 
+The package uses baxter's in-built inverse kinematics service to move to desired locations. The objective is to approach the objects horizontally and while keeping level, place them at the desired position. 
+
 ![baxpicture](./picturepathfrompackage)
 
 One [launch file][launch] is being worked on so that everything can be started with a single command.
@@ -31,6 +33,9 @@ The [artransforms.py][src-node4] script will sunscribe to the ar_pose_marker top
 The [pose_and_item.py][src-node4] script will 
 
 The [movement.py][src-node4] script launches 
+Breaking the process of picking and place an obect into several small independent tasks, this node defines each of these tasks as a seperate function. The main function calls all of these in the correct order while taking the poses of the objects from the pose_and_item.py node. This information is recieved by the subscribing to the topic "pose_and_item".
+The node also calls services to open and close the Keurig lid.
+
 
 The [open_service.py][src-node4] script launches 
 
