@@ -57,11 +57,13 @@ In total, there are three main components of this project: Color Segmentation, A
 * [ar_tagstr.msg][msg-tagstr]: contains contains the item label as a string and the pose as a geometry_msgs/Pose
 * [Open2.srv][srv-2]: Contains the service definition used to communicate with open_service.py and close_service.py.
 
+##### External packages
+* [ar_track_alvar][artrack]: This package will tack AR tags.
+* [CVBridge][cvbridge]: This package will convert ROS images into open CV images 
 
 ##### [Launch Files][launch]
 
-* [baxter_sw.launch][launch-launch1]: This launch file will start the ar_track_alvar AR tag tracking and will sets the camera it identifies tags with to be the left hand camera. It will then start the artransforms.py, starbax_sw.py, table_cam_sw.py, movement.py, pose_and_item.py,close_service.py, and open_service.py python scripts in that order. There have been some instances of the [pose-and-item][src-pose] node crashing after startup. The suggested work-around for this is to either restart that node individually, or to operate the nodes manually.
-
+* [baxter_sw.launch][launch-launch1]: This launch file will start the ar_track_alvar AR tag tracking and will sets the camera it identifies tags with to be the left hand camera. It will then start the artransforms.py, starbax_sw.py, table_cam_sw.py, movement.py, pose_and_item.py,close_service.py, and open_service.py python scripts in that order. There have been some instances of the [pose-and-item][src-pose] node crashing after startup. The suggested work-around for this is to either restart that node individually. 
 
 
 [src]:https://github.com/Laurenhut/ME495-final-project/tree/master/src
@@ -89,3 +91,6 @@ In total, there are three main components of this project: Color Segmentation, A
 [media-post1]:https://github.com/Laurenhut/ME495-final-project/blob/master/media/coffee.png
 [media-post2]:https://github.com/Laurenhut/ME495-final-project/blob/master/media/cup.png
 [media-post3]:https://github.com/Laurenhut/ME495-final-project/blob/master/media/kcup.png
+
+[artrack]:http://wiki.ros.org/ar_track_alvar
+[cvbridge]:http://wiki.ros.org/cv_bridge
