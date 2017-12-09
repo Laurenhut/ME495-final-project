@@ -2,6 +2,11 @@
 	
     <!-- Open baxter's right hand camera and set the required resolution -->
 
+<node pkg="baxter_tools" type="enable_robot.py" name="enable_robot" args="-e" />
+
+	<node pkg="baxter_tools" type="camera_control.py" name="open_left_camera" output="screen"  args="-o left_hand_camera -r 1280x800" />
+
+
 	<arg name="marker_size" default="6.9" />
 	<arg name="max_new_marker_error" default="0.08" />
 	<arg name="max_track_error" default="0.2" />
@@ -9,14 +14,7 @@
 	<arg name="cam_info_topic" default="/cameras/left_hand_camera/camera_info" />
 	<arg name="output_frame" default="/base" />
 
-
-	<node pkg="baxter_tools" type="enable_robot.py" name="enable_robot" args="-e" />
-
-	<node pkg="baxter_tools" type="camera_control.py" name="open_left_camera" output="screen"  args="-o left_hand_camera -r 1280x800" />
-
-	<node name="initial" pkg="starbax" type="starbax_sw.py">  </node> 
-
-	<node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
+<node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
 	<param name="marker_size"           type="double" value="$(arg marker_size)" />
 	<param name="max_new_marker_error"  type="double" value="$(arg max_new_marker_error)" />
 	<param name="max_track_error"       type="double" value="$(arg max_track_error)" />
@@ -25,20 +23,20 @@
 	<remap from="camera_image"  to="$(arg cam_image_topic)" />
 	<remap from="camera_info"   to="$(arg cam_info_topic)" />
 	</node>
-
-    <node name="ar_info" pkg="starbax" type="artransforms.py"> </node>
+	
+	 <node name="ar_info" pkg="starbax" type="artransforms.py"> </node>
+	
+	<node name="initial" pkg="starbax" type="starbax_sw.py">  </node> 
 
     <node name="table_cam_sw" pkg="starbax" type="table_cam_sw.py"> </node>
     
-	<node name="pose_item" pkg="starbax" type="pose_and_item.py"> </node>
-
     <node name="pick_and_place" pkg="starbax" type="movement.py"> </node>
-
-    <node name="presser_node" pkg="starbax" type="press_service.py"> </node>
+    
+	<node name="pose_item" pkg="starbax" type="pose_and_item.py"> </node>
     
     <node name="closer_node" pkg="starbax" type="close_service.py"> </node>
     
-    <node name="opener_node" pkg="starbax" type="close_service.py"> </node>
+    <node name="opener_node" pkg="starbax" type="open_service.py"> </node>
 
 
 </launch>
