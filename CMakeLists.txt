@@ -26,7 +26,6 @@ add_message_files(
   
  add_service_files(
    FILES
-   Open.srv
    Open2.srv
  )
  
