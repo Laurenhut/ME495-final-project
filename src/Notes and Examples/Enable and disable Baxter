@@ -1,2 +1,0 @@
-rosrun baxter_tools enable_robot.py -e (start up)
-rosrun baxter_tools enable_robot.py -d (shut down)

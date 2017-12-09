@@ -13,7 +13,7 @@ In total, there are three main components of this project: Color Segmentation, A
 
 [![baxpicture](./media/demo_screen.png)](https://vimeo.com/246536038)
 
-One [launch file][launch-launch1] is being worked on so that everything can be started with a single command.
+One launch file is included named ["baxter_sw.launch"][launch-launch1]. This should start everything. There have been some instances of the [pose-and-item](/src/pose_and_item) node crashing after startup. The suggested work-around for this is to either restart that node individually, or to operate the nodes manually.
 
 
 ##### [Scripts][src]
@@ -37,8 +37,6 @@ The node also calls services to open and close the Keurig lid.
 
 * The [press_service.py][src-press] script launches the `presser_node` node, which provides the `/presser` service. This service is intended to be called with a Pose message containing the position of the coffee maker relative to the base frame of Baxter. When called, the node will use the [ExternalTools/left/PositionKinematicsNode/IKService][src-press-ik] to produce a series of joint angle solutions relative to the coffee maker, then command the left arm and gripper in a sequence intended to press the start button on the coffee maker.
 
-* The [enable_robot.py][src-enable] script must be run with an appropriate argument to have any effect. It is intended to be called from the command line or a launch file with an argument of -e to enable Baxter's joint motors or -d to disable them. This version of the file is a customized variant of a Rethink Robotics script that moves Baxter's arms to a set start position after enabling the joint motors.
-
 ##### Topics & Services
 * `/opener` : This service can be called with a Pose message that contains the position of the coffee maker. It will plan and execute a series of joint movements intended to open the lid of the coffee maker using simple IK solving when it is called. After finishing it will return `True`. It uses the [Open2.srv][srv-2] definition.
 
@@ -54,7 +52,7 @@ The node also calls services to open and close the Keurig lid.
 
 ##### [Launch Files][launch]
 
-* [launch file name][launch-launch1]
+* [baxter_sw.launch][launch-launch1]: Describe me!
 
 
 
@@ -68,12 +66,11 @@ The node also calls services to open and close the Keurig lid.
 [src-open-ik]:https://github.com/Laurenhut/ME495-final-project/blob/8abeed0ab9085f8ded1aa93a2818832768050d51/src/open_service.py#L90
 [src-press]:https://github.com/Laurenhut/ME495-final-project/blob/master/src/press_service.py
 [src-press-ik]:https://github.com/Laurenhut/ME495-final-project/blob/8abeed0ab9085f8ded1aa93a2818832768050d51/src/press_service.py#L90
-[src-enable]:https://github.com/Laurenhut/ME495-final-project/blob/master/src/enable_robot.py
 
 [srv-2]:https://github.com/Laurenhut/ME495-final-project/blob/master/srv/Open2.srv
 
 [launch]:https://github.com/Laurenhut/ME495-final-project/tree/master/launch
-[launch-launch1]:https:
+[launch-launch1]:https://github.com/Laurenhut/ME495-final-project/blob/master/launch/baxter_sw.launch
 
 [media-post1]:https://github.com/Laurenhut/ME495-final-project/blob/master/media/coffee.png
 [media-post2]:https://github.com/Laurenhut/ME495-final-project/blob/master/media/cup.png
